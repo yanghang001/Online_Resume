@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - Your Name</title>
+    <style>
+        :root {
+            --primary-color: #2563eb; /* 主题科技蓝 */
+            --text-color: #1e293b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+
+        /* 头部样式 */
+        header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .contact-info {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        /* 板块通用样式 */
+        section {
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* 经验/项目列表 */
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .item-sub {
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* 技能标签 */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            .container { padding: 20px; }
+            .item-header { flex-direction: column; gap: 4px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-main">
+            <div>
+                <h1>张三</h1>
+                <div class="subtitle">高级高级资深工程师 / 团队负责人</div>
+            </div>
+        </div>
+        <div class="contact-info">
+            <div>📧 邮箱：zhangsan@example.com</div>
+            <div>📱 电话：138-8888-8888</div>
+            <div>🌐 博客：github.com/yourusername</div>
+            <div>📍 城市：北京</div>
+        </div>
+    </header>
+
+    <section>
+        <h2>个人简介</h2>
+        <p style="color: #334155; font-size: 0.95rem; margin-top: 8px;">
+            拥有多年大型系统架构与日常运维经验。精通各类自动化脚本编写与策略下发，擅长高效管理复杂企业组织架构。具备优秀的故障排查能力，执着于用技术手段提升企业流程效率。
+        </p>
+    </section>
+
+    <section>
+        <h2>工作经历</h2>
+        
+        <div class="item">
+            <div class="item-header">
+                <span>某某知名科技集团</span>
+                <span>2024.03 - 至今</span>
+            </div>
+            <div class="item-sub">系统管理专家 / 技术Leader</div>
+            <ul>
+                <li>负责全公司核心基础设施的策略设计与大规模下发，确保数跨区域多机房平稳运行。</li>
+                <li>主导自动化运维脚本体系搭建，将常见设备故障的修复耗时降低了 70%。</li>
+                <li>管理核心技术资产与权限体系，支持多组织、多层级业务安全平稳对接。</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span>互联网先行者公司</span>
+                <span>2021.06 - 2024.03</span>
+            </div>
+            <div class="item-sub">高级系统运维工程师</div>
+            <ul>
+                <li>从零开始独立编写并落地了一套自动化部署工具，成功推广至整个业务线使用。</li>
+                <li>深入分析并攻克了系统在特定场景下的状态同步和重装残留历史遗留漏洞。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>核心技能</h2>
+        <div class="skills-container">
+            <span class="skill-tag">系统架构与策略管理</span>
+            <span class="skill-tag">自动化脚本编写 (Shell/Node.js)</span>
+            <span class="skill-tag">复杂问题深度排查</span>
+            <span class="skill-tag">大规模资产调度</span>
+            <span class="skill-tag">漏洞防御与安全基线</span>
+        </div>
+    </section>
+
+    <section style="margin-bottom: 0;">
+        <h2>教育背景</h2>
+        <div class="item" style="margin-bottom: 0;">
+            <div class="item-header">
+                <span>某双一流重点大学</span>
+                <span>2017.09 - 2021.06</span>
+            </div>
+            <div class="item-sub">计算机科学与技术 · 工学学士</div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
