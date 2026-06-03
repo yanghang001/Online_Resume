@@ -1,218 +1,700 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简历 - Your Name</title>
-    <style>
-        :root {
-            --primary-color: #2563eb; /* 主题科技蓝 */
-            --text-color: #1e293b;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>杨航 · 桌面运维工程师</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --surface2:  #1a1e29;
+      --border:    #252b3b;
+      --accent:    #4f8ef7;
+      --accent2:   #7dd3b0;
+      --text:      #e8eaf0;
+      --muted:     #7880a0;
+      --tag-bg:    rgba(79,142,247,0.12);
+      --tag-col:   #7aaff8;
+      --radius:    14px;
+      --mono:      'DM Mono', monospace;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-        }
+    html { scroll-behavior: smooth; }
 
-        /* 头部样式 */
-        header {
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 24px;
-            margin-bottom: 32px;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', 'Noto Serif SC', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
 
-        .header-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            font-weight: 700;
-        }
+    /* ── LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 24px 100px;
+    }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-top: 4px;
-        }
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 64px;
+      padding: 44px 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .contact-info {
-            margin-top: 16px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 8px;
-            font-size: 0.95rem;
-            color: #64748b;
-        }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(79,142,247,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-        /* 板块通用样式 */
-        section {
-            margin-bottom: 32px;
-        }
+    /* Avatar */
+    .avatar-wrap {
+      position: relative;
+      width: 110px; height: 110px;
+      flex-shrink: 0;
+    }
+    .avatar-wrap img {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      display: block;
+    }
+    /* Fallback placeholder shown when img fails */
+    .avatar-placeholder {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 600;
+      color: #fff;
+      border: 3px solid var(--accent);
+      letter-spacing: 1px;
+      font-family: var(--mono);
+    }
 
-        h2 {
-            font-size: 1.4rem;
-            color: var(--text-color);
-            border-left: 4px solid var(--primary-color);
-            padding-left: 12px;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
+    .hero-info {}
+    .hero-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .hero-title {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .meta-item svg { flex-shrink: 0; opacity: 0.7; }
+    .meta-item a { color: var(--muted); text-decoration: none; }
+    .meta-item a:hover { color: var(--accent); }
 
-        /* 经验/项目列表 */
-        .item {
-            margin-bottom: 20px;
-        }
+    .salary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 5px 14px;
+      background: rgba(125,211,176,0.1);
+      border: 1px solid rgba(125,211,176,0.3);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-family: var(--mono);
+    }
 
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 6px;
-        }
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 56px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
-        .item-sub {
-            font-size: 0.95rem;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+      opacity: 0.4;
+    }
 
-        ul {
-            padding-left: 20px;
-            color: #334155;
-            font-size: 0.95rem;
-        }
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+      padding: 28px 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .tl-item:hover {
+      border-color: rgba(79,142,247,0.4);
+      transform: translateX(4px);
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -35px; top: 32px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 8px rgba(79,142,247,0.6);
+    }
 
-        li {
-            margin-bottom: 6px;
-        }
+    .tl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .tl-company {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    .tl-period {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .tl-role {
+      font-size: 0.82rem;
+      color: var(--accent2);
+      font-family: var(--mono);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .tl-body {
+      font-size: 0.88rem;
+      color: #b8bdd0;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .tl-body p + p { margin-top: 6px; }
 
-        /* 技能标签 */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      padding: 2px 10px;
+      background: var(--tag-bg);
+      border: 1px solid rgba(79,142,247,0.2);
+      border-radius: 20px;
+      font-size: 0.74rem;
+      color: var(--tag-col);
+      font-family: var(--mono);
+      letter-spacing: 0.5px;
+    }
+    .tag.green {
+      background: rgba(125,211,176,0.08);
+      border-color: rgba(125,211,176,0.2);
+      color: var(--accent2);
+    }
 
-        .skill-tag {
-            background-color: #eff6ff;
-            color: var(--primary-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .edu-grid { grid-template-columns: 1fr; } }
 
-        @media (max-width: 640px) {
-            body { padding: 12px; }
-            .container { padding: 20px; }
-            .item-header { flex-direction: column; gap: 4px; }
-            h1 { font-size: 2rem; }
-        }
-    </style>
+    .edu-card {
+      padding: 24px 26px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.25s;
+    }
+    .edu-card:hover { border-color: rgba(79,142,247,0.35); }
+    .edu-school {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 3px;
+    }
+    .edu-major {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-family: var(--mono);
+      margin-bottom: 10px;
+    }
+    .edu-period {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .edu-note {
+      font-size: 0.83rem;
+      color: #9099b8;
+      line-height: 1.6;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .skill-card-body {
+      font-size: 0.84rem;
+      color: #9099b8;
+      line-height: 1.65;
+    }
+
+    /* ── PROJECT ── */
+    .proj-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 26px 30px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      border-radius: var(--radius);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .proj-item:hover {
+      border-color: rgba(125,211,176,0.5);
+      border-left-color: var(--accent2);
+      transform: translateX(4px);
+    }
+    .proj-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .proj-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .proj-role {
+      font-family: var(--mono);
+      font-size: 0.73rem;
+      color: var(--accent2);
+      letter-spacing: 1px;
+    }
+    .proj-period {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .proj-body {
+      font-size: 0.87rem;
+      color: #9099b8;
+      line-height: 1.72;
+      margin-top: 10px;
+    }
+    .proj-highlight {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--accent2);
+      padding: 8px 12px;
+      background: rgba(125,211,176,0.06);
+      border-radius: 8px;
+      border-left: 2px solid var(--accent2);
+    }
+
+    /* ── FOOTER ── */
+    .resume-footer {
+      margin-top: 72px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero       { animation: fadeUp 0.6s ease both; }
+    .section    { animation: fadeUp 0.6s ease both; }
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+    .section:nth-child(5) { animation-delay: 0.4s; }
+
+    @media (max-width: 620px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 32px 24px; gap: 20px; }
+      .hero-meta { justify-content: center; }
+      .hero::after { display: none; }
+      .avatar-wrap { margin: 0 auto; }
+      .tl-item { padding: 20px 18px; }
+      .tl-item::before { left: -31px; }
+    }
+  </style>
 </head>
 <body>
+<div class="page">
 
-<div class="container">
-    <header>
-        <div class="header-main">
-            <div>
-                <h1>张三</h1>
-                <div class="subtitle">高级高级资深工程师 / 团队负责人</div>
-            </div>
-        </div>
-        <div class="contact-info">
-            <div>📧 邮箱：zhangsan@example.com</div>
-            <div>📱 电话：138-8888-8888</div>
-            <div>🌐 博客：github.com/yourusername</div>
-            <div>📍 城市：北京</div>
-        </div>
-    </header>
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <!-- 替换 avatar.jpg 为你的实际头像文件路径 -->
+      <img src="avatar.jpg" alt="杨航头像"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="avatar-placeholder" style="display:none;">YH</div>
+    </div>
+    <div class="hero-info">
+      <div class="hero-name">杨 航</div>
+      <div class="hero-title">Desktop Operations Engineer · 桌面运维工程师</div>
+      <div class="hero-meta">
+        <span class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+          <a href="mailto:yanghang720@gmail.com">yanghang720@gmail.com</a>
+        </span>
+        <span class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92V21a2 2 0 01-2.18 2A19.86 19.86 0 013 5.18 2 2 0 015 3h4.09a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 11a16 16 0 006.09 6.09l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 18v-.08z"/></svg>
+          18408271422
+        </span>
+        <span class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          1994 / 12
+        </span>
+        <span class="meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          在职 · 考虑机会
+        </span>
+      </div>
+      <div class="salary-badge">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        期望薪资 12,000 – 14,000 RMB/月
+      </div>
+    </div>
+  </div>
 
-    <section>
-        <h2>个人简介</h2>
-        <p style="color: #334155; font-size: 0.95rem; margin-top: 8px;">
-            拥有多年大型系统架构与日常运维经验。精通各类自动化脚本编写与策略下发，擅长高效管理复杂企业组织架构。具备优秀的故障排查能力，执着于用技术手段提升企业流程效率。
-        </p>
-    </section>
-
-    <section>
-        <h2>工作经历</h2>
-        
-        <div class="item">
-            <div class="item-header">
-                <span>某某知名科技集团</span>
-                <span>2024.03 - 至今</span>
-            </div>
-            <div class="item-sub">系统管理专家 / 技术Leader</div>
-            <ul>
-                <li>负责全公司核心基础设施的策略设计与大规模下发，确保数跨区域多机房平稳运行。</li>
-                <li>主导自动化运维脚本体系搭建，将常见设备故障的修复耗时降低了 70%。</li>
-                <li>管理核心技术资产与权限体系，支持多组织、多层级业务安全平稳对接。</li>
-            </ul>
+  <!-- ═══ EDUCATION ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">01</span>
+      <span class="section-title">教育经历</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-school">四川交通职业技术学院</div>
+        <div class="edu-major">计算机网络技术 · 大专</div>
+        <div class="edu-period">2013/09 — 2016/06</div>
+        <div class="edu-note">
+          主修：思科（路由与交换）、Windows Server、网络安全、SQL Server、网页设计等；
+          获优秀进步奖、CET4。
         </div>
-
-        <div class="item">
-            <div class="item-header">
-                <span>互联网先行者公司</span>
-                <span>2021.06 - 2024.03</span>
-            </div>
-            <div class="item-sub">高级系统运维工程师</div>
-            <ul>
-                <li>从零开始独立编写并落地了一套自动化部署工具，成功推广至整个业务线使用。</li>
-                <li>深入分析并攻克了系统在特定场景下的状态同步和重装残留历史遗留漏洞。</li>
-            </ul>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">西南交通大学</div>
+        <div class="edu-major">工商管理 · 本科（自考专升本）</div>
+        <div class="edu-period">2024/09 — 2026/09</div>
+        <div class="edu-note">
+          在读，预计 2027 年 6 月取得毕业证书。
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <section>
-        <h2>核心技能</h2>
-        <div class="skills-container">
-            <span class="skill-tag">系统架构与策略管理</span>
-            <span class="skill-tag">自动化脚本编写 (Shell/Node.js)</span>
-            <span class="skill-tag">复杂问题深度排查</span>
-            <span class="skill-tag">大规模资产调度</span>
-            <span class="skill-tag">漏洞防御与安全基线</span>
-        </div>
-    </section>
+  <!-- ═══ WORK EXPERIENCE ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">02</span>
+      <span class="section-title">工作经验</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
 
-    <section style="margin-bottom: 0;">
-        <h2>教育背景</h2>
-        <div class="item" style="margin-bottom: 0;">
-            <div class="item-header">
-                <span>某双一流重点大学</span>
-                <span>2017.09 - 2021.06</span>
-            </div>
-            <div class="item-sub">计算机科学与技术 · 工学学士</div>
+      <!-- 转转集团 -->
+      <div class="tl-item">
+        <div class="tl-top">
+          <span class="tl-company">转转集团</span>
+          <span class="tl-period">2025/05 — 至今</span>
         </div>
-    </section>
+        <div class="tl-role">Helpdesk / 桌面运维</div>
+        <div class="tl-body">
+          <p>负责成都质检中心职场的桌面各项问题处理（会议室、电脑、打印机等）；负责桌面知识库重建，并通过企业微信/飞书内部订阅号推送 IT 相关推文。</p>
+          <p>深度负责苹果设备相关事项：各版本 Mac 系统重装（DFU/Target Mode）、系统封装、Mac 知识库搭建、ABM 及 MDM 管理（激活锁管控）等。</p>
+          <p>利用 AI 工具为职场定制化制作各类脚本与可执行程序，提升日常运维效率。</p>
+        </div>
+        <div class="tags">
+          <span class="tag">macOS</span>
+          <span class="tag">ABM</span>
+          <span class="tag">MDM</span>
+          <span class="tag">DFU / Target Mode</span>
+          <span class="tag">飞书</span>
+          <span class="tag">AI 脚本</span>
+          <span class="tag">知识库</span>
+        </div>
+      </div>
+
+      <!-- 京东安联 -->
+      <div class="tl-item">
+        <div class="tl-top">
+          <span class="tl-company">京东安联财产保险有限公司四川分公司</span>
+          <span class="tl-period">2020/09 — 2025/05</span>
+        </div>
+        <div class="tl-role">Helpdesk / 桌面运维</div>
+        <div class="tl-body">
+          <p>负责四川分公司及成都客服部职场内所有 IT 相关事项，涵盖网络、门禁、桌面运维、打印机、资产管理及视频会议系统等；同时远程支持上海职场（国际业务部）的桌面问题。</p>
+          <p>负责 IT 软硬件维护与技术支持、IT 知识答疑；承担全公司 IT 设备采购（低值设备类、PC、Laptop、Monitor 等），以及桌面运维知识库从文件服务器向线上文档的完整迁移与搭建。</p>
+          <p>兼职行政岗一年，负责公司各项费用分摊及报销；负责杀软轻量管理（McAfee / Sangfor：报表生成、病毒库更新、USB 管控）及桌管软件的设备管理、策略下发、Windows 更新与软件仓库维护。</p>
+        </div>
+        <div class="tags">
+          <span class="tag">McAfee</span>
+          <span class="tag">Sangfor</span>
+          <span class="tag">资产管理</span>
+          <span class="tag">知识库建设</span>
+          <span class="tag">IT 采购</span>
+          <span class="tag">视频会议</span>
+          <span class="tag">RDP</span>
+          <span class="tag">Windows Update</span>
+        </div>
+      </div>
+
+      <!-- 字节跳动 -->
+      <div class="tl-item">
+        <div class="tl-top">
+          <span class="tl-company">北京字节跳动科技有限公司</span>
+          <span class="tl-period">2018/11 — 2020/08</span>
+        </div>
+        <div class="tl-role">Helpdesk / 桌面运维</div>
+        <div class="tl-body">
+          <p>今日头条驻成都区域（IFS）内容质量中心企业内部桌面运维，负责维护区域人数超 3000 人的 IT 环境。承担资产管理、常见桌面问题处理及技术文档输出；跨部门工作协调及 IT 项目实施对接。</p>
+        </div>
+        <div class="tags">
+          <span class="tag">大规模用户维护</span>
+          <span class="tag">技术文档</span>
+          <span class="tag">IT 项目实施</span>
+          <span class="tag">跨部门协作</span>
+        </div>
+      </div>
+
+      <!-- 神州数码 -->
+      <div class="tl-item">
+        <div class="tl-top">
+          <span class="tl-company">北京神州数码科捷技术服务有限公司</span>
+          <span class="tl-period">2016/06 — 2018/06</span>
+        </div>
+        <div class="tl-role">维修工程师</div>
+        <div class="tl-body">
+          <p>负责笔记本（戴尔、联想、微星等品牌）的硬件维修；检测维修过程中及时与用户沟通；向到访客户或线上用户推介延保服务（少量）。</p>
+        </div>
+        <div class="tags">
+          <span class="tag green">硬件维修</span>
+          <span class="tag green">Dell</span>
+          <span class="tag green">Lenovo</span>
+          <span class="tag green">MSI</span>
+          <span class="tag green">用户沟通</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ PROJECT EXPERIENCE ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">03</span>
+      <span class="section-title">项目经历</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="proj-item">
+      <div class="proj-top">
+        <span class="proj-name">企微迁移至飞书 · 邮箱搬家</span>
+        <span class="proj-role">Project Manager</span>
+      </div>
+      <div class="proj-period">2026/05 — 2026/07</div>
+      <div class="proj-body">
+        公司将内部 IM 由企业微信迁移至飞书，涉及腾讯企业邮迁移至飞书邮箱。前期在飞书管理后台完成迁移测试，整理相关问题并输出用户端操作指南及公共邮箱迁移指南；通过飞书机器人+多维表格实现两次自动通知推送，并整理常见问题 Q&A。
+      </div>
+      <div class="proj-highlight">✦ 项目成果：保障全量用户邮件数据完整迁移，零丢失。</div>
+    </div>
+
+    <div class="proj-item">
+      <div class="proj-top">
+        <span class="proj-name">苹果 ABM 及 MDM 调研</span>
+        <span class="proj-role">Project Manager</span>
+      </div>
+      <div class="proj-period">2026/01 — 2026/05</div>
+      <div class="proj-body">
+        公司计划采购 500–1000 台苹果电脑，前期对 ABM / MDM 进行系统调研，覆盖 DUNS 编码申请、ABM 注册，以及 Flinco、Jamf、Zoho 等第三方 MDM 产品横向对比及核心功能梳理。跟进 2026 年 4 月苹果官方推出内置设备管理（Apple Business Manager MDM 重大更新）的最新变化。
+      </div>
+      <div class="proj-highlight">✦ 项目成果：输出完整测试报告；确认 ABM 可对激活锁进行管控，内置设备管理功能待后续更新跟进。</div>
+    </div>
+
+    <div class="proj-item">
+      <div class="proj-top">
+        <span class="proj-name">IT 内部知识库整理</span>
+        <span class="proj-role">Project Manager</span>
+      </div>
+      <div class="proj-period">2021/07 — 2025/01</div>
+      <div class="proj-body">
+        撰写并整理内部知识库文档，内容涵盖电脑操作、网络、打印机、邮箱、视频会议室、入离职、资产、费用、审批流程及权限申请等全类别。推动从文件服务器向线上文档的完整转型，发现并上报线上文档平台产品 Bug，推动产品侧改进。
+      </div>
+      <div class="proj-highlight">✦ 项目成果：大幅提升桌面支持团队效率，用户可自助查找 IT 指引，减少重复工单量。</div>
+    </div>
+
+    <div class="proj-item">
+      <div class="proj-top">
+        <span class="proj-name">资产盘点</span>
+        <span class="proj-role">Project Manager</span>
+      </div>
+      <div class="proj-period">2020/01 — 2023/04</div>
+      <div class="proj-body">
+        每年年中、年末发起各职场 IT 资产盘点，制定盘点时间表、明确责任人及盘点方式，按计划督促各职场执行，最终汇总盘点结果并归档。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SKILLS ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">04</span>
+      <span class="section-title">专业技能</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">硬件 &amp; 系统</div>
+        <div class="skill-card-body">
+          两年硬件维修经验，可熟练拆装戴尔、惠普、联想、华硕等品牌笔记本及台式机；熟练掌握 Windows 系统常见问题排障；有域环境（Windows Server）实操经验。
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">macOS &amp; Apple 生态</div>
+        <div class="skill-card-body">
+          Mac 各型号系统重装（DFU 模式、Target Mode）、系统封装；熟练使用 macOS；ABM 注册与管理、MDM 设备策略、激活锁管控。
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">网络 &amp; 安全</div>
+        <div class="skill-card-body">
+          基础网络故障 Troubleshooting；McAfee / Sangfor 杀软轻量管理（报表、病毒库更新、USB 管控）；基础 CMD 命令行与批处理，现可借助 AI 实现复杂 PowerShell 脚本。
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">管理 &amp; 工具</div>
+        <div class="skill-card-body">
+          IT 设备采购与资产管理；桌管软件（设备管理、策略下发、软件仓库、RDP）；知识库搭建与维护；飞书 / 企业微信平台运营与自动化推送。
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">语言 &amp; 沟通</div>
+        <div class="skill-card-body">
+          普通话水平测试二甲（91.5 分）；英语 CET-4，可进行日常简单沟通。
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">学习中</div>
+        <div class="skill-card-body">
+          西南交大工商管理本科自考在读（预计 2027/06 毕业）；持续跟进 Apple Business Manager 及 MDM 最新动态。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-footer">YANG HANG · RESUME · 2026</div>
+
 </div>
-
 </body>
 </html>
